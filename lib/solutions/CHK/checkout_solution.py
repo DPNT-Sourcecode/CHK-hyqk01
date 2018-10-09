@@ -74,8 +74,9 @@ class Offer(object):
 
 
 class Basket(object):
-    def __init__(self, skus):
+    def __init__(self, skus, products=None):
         self.skus = skus.replace(' ', '').split(',')
+        self.products = products if products else []
 
     def is_valid(self):
         if all(sku.isalpha() for sku in self.skus):
@@ -84,5 +85,17 @@ class Basket(object):
 
 
 def checkout(skus):
-    raise NotImplementedError()
+    basket = Basket(skus)
+    if not basket.is_valid():
+        return -1
+
+    skus = skus.replace(' ', '').split(',')
+
+    for sku in skus:
+        if Product(sku).is_available():
+            basket.products.append(Product(sku))
+        else:
+            return -1
+
+
 
