@@ -94,8 +94,8 @@ class TestOffer(unittest.TestCase):
 
 class TestBasket(unittest.TestCase):
     def setUp(self):
-        self.valid_basket = u'A, b, C, D, E'
-        self.not_valid_basket = u'%, B, 1'
+        self.valid_basket = u'AbCDE'
+        self.not_valid_basket = u'%B1'
 
     def test_is_valid_basket(self):
         basket = Basket(self.valid_basket)
@@ -108,8 +108,8 @@ class TestBasket(unittest.TestCase):
 
 class TestCheckout(unittest.TestCase):
     def setUp(self):
-        self.valid_basket_1 = u'C, A, A, A, B, B'
-        self.valid_basket_2 = u'B, A, B, C'
+        self.valid_basket_1 = u'CAAABB'
+        self.valid_basket_2 = u'BABC'
 
     def test_checkout(self):
         self.assertEqual(195, checkout(self.valid_basket_1))
