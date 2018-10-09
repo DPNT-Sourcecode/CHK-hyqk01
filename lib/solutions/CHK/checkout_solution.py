@@ -78,11 +78,10 @@ class Offer(object):
 
 class Basket(object):
     def __init__(self, skus, products=None):
-        self.skus = skus.replace(' ', '').split(',')
+        self.skus = [sku for sku in skus]
         self.products = products if products else []
 
     def is_valid(self):
-        import ipdb; ipdb.set_trace()
         if all(sku.isalpha() for sku in self.skus) or not self.skus:
             return True
         return False
