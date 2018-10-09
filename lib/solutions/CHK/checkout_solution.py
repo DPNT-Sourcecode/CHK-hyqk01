@@ -93,6 +93,7 @@ def checkout(skus):
         return -1
 
     skus = skus.replace(' ', '').split(',')
+    skus.sort()
 
     for sku in skus:
         if Product(sku).is_available():
@@ -109,7 +110,7 @@ def checkout(skus):
         product = Product(group[0])
 
         product_price = product.get_product()[0].get('price')
-        import ipdb; ipdb.set_trace()
+        # import ipdb; ipdb.set_trace()
         if product.is_on_offer():
             offer = Offer(product.get_product()[0].get('offer_id'))
             offer_price = offer.get_offer()[0].get('price')
