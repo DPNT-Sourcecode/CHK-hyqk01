@@ -38,7 +38,7 @@ class Product(object):
         return []
 
     def is_on_offer(self):
-        if self.get_product()[0]['offer_id'] is not None:
+        if self.is_available() and self.get_product()[0][1]['offer_id'] is not None:
             return True
         return False
 
