@@ -104,6 +104,6 @@ class TestBasket(unittest.TestCase):
         basket = Basket(self.not_valid_basket)
         self.assertFalse(basket.is_valid())
 
-    
+
 if __name__ == '__main__':
     unittest.main()
