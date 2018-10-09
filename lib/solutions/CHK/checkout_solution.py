@@ -82,6 +82,7 @@ class Basket(object):
         self.products = products if products else []
 
     def is_valid(self):
+        import ipdb; ipdb.set_trace()
         if all(sku.isalpha() for sku in self.skus):
             return True
         return False
