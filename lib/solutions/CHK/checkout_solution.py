@@ -92,7 +92,6 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    import ipdb; ipdb.set_trace()
     prod_sku = [sk for sk in skus]
     prod_sku.sort()
 
@@ -111,7 +110,6 @@ def checkout(skus):
         product = Product(group[0])
 
         product_price = product.get_product()[0].get('price')
-        # import ipdb; ipdb.set_trace()
         if product.is_on_offer():
             offer = Offer(product.get_product()[0].get('offer_id'))
             offer_price = offer.get_offer()[0].get('price')
