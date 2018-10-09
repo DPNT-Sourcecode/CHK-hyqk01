@@ -1,6 +1,6 @@
 import unittest
 
-from solutions.CHK.checkout_solution import Product, Offer
+from solutions.CHK.checkout_solution import Product, Offer, Basket
 
 
 class TestProduct(unittest.TestCase):
@@ -91,5 +91,19 @@ class TestOffer(unittest.TestCase):
         self.assertEqual(0, len(offer.get_offer()))
 
 
+class TestBasket(unittest.TestCase):
+    def setUp(self):
+        self.valid_basket = u'A, b, C, D, E'
+        self.not_valid_basket = u'%, B, 1'
+
+    def test_is_valid_basket(self):
+        basket = Basket(self.valid_basket)
+        self.assertTrue(basket.is_valid())
+
+    def test_is_not_valid_basket(self):
+        basket = Basket(self.not_valid_basket)
+        self.assertFalse(basket.is_valid())
+
+    
 if __name__ == '__main__':
     unittest.main()

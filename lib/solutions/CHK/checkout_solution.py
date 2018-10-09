@@ -74,5 +74,15 @@ class Offer(object):
         return []
 
 
+class Basket(object):
+    def __init__(self, skus):
+        self.skus = skus.replace(' ', '').split(',')
+
+    def is_valid(self):
+        if all(sku.isalpha() for sku in self.skus):
+            return True
+        return False
+
+
 def checkout(skus):
     raise NotImplementedError()
