@@ -1,6 +1,6 @@
 import unittest
 
-from solutions.CHK.checkout_solution import Product
+from solutions.CHK.checkout_solution import Product, Offer
 
 
 class TestProduct(unittest.TestCase):
@@ -44,6 +44,31 @@ class TestProduct(unittest.TestCase):
     def test_get_not_available_product_from_list(self):
         product = Product('X')
         self.assertEqual(0, len(product.get_product()))
+
+
+class TestOffer(unittest.TestCase):
+
+    def setUp(self):
+        self.offer = [
+            {
+                "offer_id": 1,
+                "quantity": 3,
+                "price": 130
+            },
+            {
+                "offer_id": 2,
+                "quantity": 2,
+                "price": 45
+            },
+        ]
+
+    def test_offer_is_available(self):
+        offer = Offer(1)
+        self.assertTrue(offer.is_available())
+
+    def test_offer_is_not_available(self):
+        offer = Offer(3)
+        self.assertFalse(offer.is_available())
 
 
 if __name__ == '__main__':

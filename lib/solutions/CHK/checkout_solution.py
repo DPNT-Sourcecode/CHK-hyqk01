@@ -39,7 +39,26 @@ class Product(object):
 
 
 class Offer(object):
-    pass
+    offer_list = [
+            {
+                "offer_id": 1,
+                "quantity": 3,
+                "price": 130
+            },
+            {
+                "offer_id": 2,
+                "quantity": 2,
+                "price": 45
+            },
+        ]
+
+    def __init__(self, id):
+        self.id = id
+
+    def is_available(self):
+        if any(offer.get('offer_id') == self.id for offer in self.offer_list):
+            return True
+        return False
 
 
 def checkout(skus):
