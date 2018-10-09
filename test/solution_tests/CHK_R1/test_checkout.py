@@ -70,6 +70,14 @@ class TestOffer(unittest.TestCase):
         offer = Offer(3)
         self.assertFalse(offer.is_available())
 
+    def test_get_available_offer(self):
+        offer = Offer(1)
+        self.assertEqual(1, len(offer.get_offer()))
+
+    def test_get_not_available_offer(self):
+        offer = Offer(3)
+        self.assertEqual(0, len(offer.get_offer()))
+
 
 if __name__ == '__main__':
     unittest.main()
