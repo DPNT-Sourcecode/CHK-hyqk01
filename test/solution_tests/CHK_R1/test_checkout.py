@@ -1,5 +1,7 @@
 import unittest
 
+from solutions.CHK.checkout_solution import Product
+
 
 class TestCheckout(unittest.TestCase):
 
@@ -28,7 +30,8 @@ class TestCheckout(unittest.TestCase):
         ]
 
     def test_product_is_available(self):
-        pass
+        product = Product('A')
+        self.assertTrue(product.is_available())
 
     def test_product_is_not_available(self):
         pass
