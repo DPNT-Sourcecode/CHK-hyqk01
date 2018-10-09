@@ -33,7 +33,7 @@ class Product(object):
     def get_product(self):
         if self.is_available():
             for idx, product in enumerate(self.products_list):
-                if self.sku == product['sku']:
+                if self.sku == product.get('sku'):
                     return [(idx, self.products_list[idx])]
         return []
 
@@ -60,6 +60,11 @@ class Offer(object):
             return True
         return False
 
+    def get_offer(self):
+        if self.is_available():
+            for idx, offer in enumerate(self.offer_list):
+                if self.id == offer.get('offer_id'):
+                    return [(idx, self.offer_list[idx])]
 
 def checkout(skus):
     raise NotImplementedError()
