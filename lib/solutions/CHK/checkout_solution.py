@@ -104,15 +104,20 @@ def checkout(skus):
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
         product_groups.append((sku, len(list(group))))
 
-    import ipdb; ipdb.set_trace()
+    total = 0
     for group in product_groups:
         product = Product(group[0])
 
+        product_price = product.get_product()[0].get('price')
+        import ipdb; ipdb.set_trace()
         if product.is_on_offer():
             offer = Offer(product.get_product()[0].get('offer_id'))
             offer_price = offer.get_offer()[0].get('price')
             offer_quantity = offer.get_offer()[0].get('quantity')
 
-            quo, rem = divmod()
+            quo, rem = divmod(group[1], offer_quantity)
+            total += quo * offer_price + rem * product_price
+        else:
+            total += group[1] * product_price
 
-    return
+    return total

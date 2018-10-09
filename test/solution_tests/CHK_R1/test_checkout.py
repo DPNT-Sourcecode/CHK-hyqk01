@@ -108,10 +108,12 @@ class TestBasket(unittest.TestCase):
 
 class TestCheckout(unittest.TestCase):
     def setUp(self):
-        self.valid_basket = u'C, A, A, A, B, B'
+        self.valid_basket_1 = u'C, A, A, A, B, B'
+        self.valid_basket_2 = u'B, A, B, C'
 
     def test_checkout(self):
-        self.assertEqual(195, checkout(self.valid_basket))
+        # self.assertEqual(195, checkout(self.valid_basket_1))
+        self.assertEqual(115, checkout(self.valid_basket_2))
 
 
 if __name__ == '__main__':
