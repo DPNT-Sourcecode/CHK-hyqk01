@@ -26,7 +26,7 @@ class Product(object):
         ]
 
     def __init__(self, sku):
-        self.sku = sku.upper()
+        self.sku = sku
 
     def is_available(self):
         if any(product.get('sku') == self.sku for product in self.products_list):
@@ -92,7 +92,8 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    skus = skus.replace(' ', '').split(',')
+    import ipdb; ipdb.set_trace()
+    # skus = skus.replace(' ', '').split(',')
     skus.sort()
 
     for sku in skus:
