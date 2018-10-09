@@ -93,10 +93,10 @@ def checkout(skus):
         return -1
 
     import ipdb; ipdb.set_trace()
-    # skus = skus.replace(' ', '').split(',')
-    skus.sort()
+    prod_sku = [sk for sk in skus]
+    prod_sku.sort()
 
-    for sku in skus:
+    for sku in prod_sku:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
         else:

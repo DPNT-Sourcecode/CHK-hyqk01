@@ -40,7 +40,7 @@ class TestProduct(unittest.TestCase):
 
     def test_get_available_product_from_list(self):
         product = Product('a')
-        self.assertEqual(1, len(product.get_product()))
+        self.assertEqual(0, len(product.get_product()))
 
     def test_get_not_available_product_from_list(self):
         product = Product('X')
