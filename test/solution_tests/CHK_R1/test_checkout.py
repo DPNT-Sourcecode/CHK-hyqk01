@@ -45,7 +45,11 @@ class TestProduct(unittest.TestCase):
         product = Product('X')
         self.assertEqual(0, len(product.get_product()))
 
+    def test_product_is_on_offer(self):
+        product = Product('A')
+        self.assertTrue(product.is_on_offer())
 
+        
 class TestOffer(unittest.TestCase):
 
     def setUp(self):

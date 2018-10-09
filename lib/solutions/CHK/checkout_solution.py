@@ -37,6 +37,11 @@ class Product(object):
                     return [(idx, self.products_list[idx])]
         return []
 
+    def is_on_offer(self):
+        if self.get_product()[0]['offer_id'] is not None:
+            return True
+        return False
+
 
 class Offer(object):
     offers_list = [
