@@ -70,7 +70,6 @@ class Offer(object):
             for idx, offer in enumerate(self.offers_list):
                 if self.id == offer.get('offer_id'):
                     return [(idx, self.offers_list[idx])]
-
         return []
 
 
@@ -86,3 +85,4 @@ class Basket(object):
 
 def checkout(skus):
     raise NotImplementedError()
+
