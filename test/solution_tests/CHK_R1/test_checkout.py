@@ -3,7 +3,7 @@ import unittest
 from solutions.CHK.checkout_solution import Product
 
 
-class TestCheckout(unittest.TestCase):
+class TestProduct(unittest.TestCase):
 
     def setUp(self):
         self.products = [
@@ -37,6 +37,10 @@ class TestCheckout(unittest.TestCase):
         product = Product('X')
         self.assertFalse(product.is_available())
 
+    def test_get_available_product_from_list(self):
+        product = Product('a')
+        self.assertEqual(1, len(product.get_product()))
+        
 
 if __name__ == '__main__':
     unittest.main()
