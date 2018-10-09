@@ -94,12 +94,16 @@ class TestOffer(unittest.TestCase):
 
 class TestBasket(unittest.TestCase):
     def setUp(self):
-        self.valid_basket = u'AbCDE'
+        self.valid_basket_1 = u'AbCDE'
+        self.valid_basket_2 = u''
         self.not_valid_basket = u'%B1'
 
     def test_is_valid_basket(self):
-        basket = Basket(self.valid_basket)
-        self.assertTrue(basket.is_valid())
+        basket_1 = Basket(self.valid_basket_1)
+        self.assertTrue(basket_1.is_valid())
+
+        basket_2 = Basket(self.valid_basket_2)
+        self.assertTrue(basket_2.is_valid())
 
     def test_is_not_valid_basket(self):
         basket = Basket(self.not_valid_basket)

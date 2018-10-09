@@ -83,7 +83,7 @@ class Basket(object):
 
     def is_valid(self):
         import ipdb; ipdb.set_trace()
-        if all(sku.isalpha() for sku in self.skus):
+        if all(sku.isalpha() for sku in self.skus) or not self.skus:
             return True
         return False
 
