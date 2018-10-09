@@ -1,3 +1,6 @@
+import itertools
+
+
 class Product(object):
     products_list = [
             {
@@ -96,6 +99,10 @@ def checkout(skus):
             basket.products.append(Product(sku))
         else:
             return -1
+
+    product_groups = []
+    for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product().get('sku')):
+        product_groups.append((sku, len(list(group))))
 
 
 
