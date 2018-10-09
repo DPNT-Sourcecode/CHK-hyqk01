@@ -30,6 +30,9 @@ class Product(object):
             return True
         return False
 
+    def get(self):
+        if self.is_available():
+            pass
 
 class Offer(object):
     pass
