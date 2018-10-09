@@ -57,7 +57,7 @@ class TestProduct(unittest.TestCase):
         product = Product('X')
         self.assertFalse(product.is_on_offer())
 
-        
+
 class TestOffer(unittest.TestCase):
 
     def setUp(self):
