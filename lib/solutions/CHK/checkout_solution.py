@@ -22,8 +22,13 @@ class Product(object):
             },
         ]
 
+    def __init__(self, sku):
+        self.sku = sku
+
     def is_available(self):
-        pass
+        if any(product.get('sku') == self.sku for product in self.products_list):
+            return True
+        return False
 
 
 class Offer(object):

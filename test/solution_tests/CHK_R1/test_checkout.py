@@ -34,7 +34,8 @@ class TestCheckout(unittest.TestCase):
         self.assertTrue(product.is_available())
 
     def test_product_is_not_available(self):
-        pass
+        product = Product('X')
+        self.assertFalse(product.is_available())
 
 
 if __name__ == '__main__':
