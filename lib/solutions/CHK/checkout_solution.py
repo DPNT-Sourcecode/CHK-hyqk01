@@ -109,5 +109,10 @@ def checkout(skus):
         product = Product(group[0])
 
         if product.is_on_offer():
-            offer = Offer(product.get_product())
+            offer = Offer(product.get_product()[0].get('offer_id'))
+            offer_price = offer.get_offer()[0].get('price')
+            offer_quantity = offer.get_offer()[0].get('quantity')
+
+            quo, rem = divmod()
+
     return
