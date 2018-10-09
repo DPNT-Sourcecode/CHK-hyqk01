@@ -105,5 +105,9 @@ def checkout(skus):
         product_groups.append((sku, len(list(group))))
 
     import ipdb; ipdb.set_trace()
+    for group in product_groups:
+        product = Product(group[0])
 
+        if product.is_on_offer():
+            offer = Offer(product.get_product())
     return
