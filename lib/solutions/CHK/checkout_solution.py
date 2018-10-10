@@ -111,14 +111,14 @@ def checkout(skus):
         else:
             return -1
 
+    offer_applied = False
     offers = [Offer(product.get_product()[0].get('offer_id')) for product in basket.products]
     for offer in offers:
-        if offer.get_offer():
+        if offer.get_offer() and not offer_applied:
             price = offer.get_offer()[0].get('price')
             if not price:
                 product_for_free = offer.get_offer()[0].get('sku')
                 product_for_free_quantity = offer.get_offer()[0].get('sku_quantity')
-                import ipdb; ipdb.set_trace()
                 prod_sku = prod_sku.replace(product_for_free, '', product_for_free_quantity)
 
                 basket.products = []
@@ -127,6 +127,7 @@ def checkout(skus):
                         basket.products.append(Product(sku))
                     else:
                         return -1
+                offer_applied = True
 
     product_groups = []
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
