@@ -22,7 +22,7 @@ class Product(object):
                 "sku": "D",
                 "price": 15,
                 "offer_id": None
-            },
+            }
         ]
 
     def __init__(self, sku):
