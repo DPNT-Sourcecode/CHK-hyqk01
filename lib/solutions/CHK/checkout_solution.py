@@ -22,7 +22,12 @@ class Product(object):
                 "sku": "D",
                 "price": 15,
                 "offer_id": None
-            }
+            },
+            {
+                "sku": "E",
+                "price": 40,
+                "offer_id": 3
+            },
         ]
 
     def __init__(self, sku):
@@ -51,12 +56,19 @@ class Offer(object):
             {
                 "offer_id": 1,
                 "quantity": 3,
-                "price": 130
+                "price": 130,
             },
             {
                 "offer_id": 2,
                 "quantity": 2,
                 "price": 45
+            },
+            {
+                "offer_id": 3,
+                "quantity": 2,
+                "price": None,
+                "sku": "B",
+                "sku_quantity": 1
             },
         ]
 
@@ -92,14 +104,29 @@ def checkout(skus):
     if not basket.is_valid():
         return -1
 
-    prod_sku = [sk for sk in skus]
-    prod_sku.sort()
-
+    prod_sku = ''.join(sorted(skus))
     for sku in prod_sku:
         if Product(sku).is_available():
             basket.products.append(Product(sku))
         else:
             return -1
+
+    offers = [Offer(product.get_product()[0].get('offer_id')) for product in basket.products]
+    for offer in offers:
+        if offer.get_offer():
+            price = offer.get_offer()[0].get('price')
+            if not price:
+                product_for_free = offer.get_offer()[0].get('sku')
+                product_for_free_quantity = offer.get_offer()[0].get('sku_quantity')
+                import ipdb; ipdb.set_trace()
+                prod_sku = prod_sku.replace(product_for_free, '', product_for_free_quantity)
+
+                basket.products = []
+                for sku in prod_sku:
+                    if Product(sku).is_available():
+                        basket.products.append(Product(sku))
+                    else:
+                        return -1
 
     product_groups = []
     for sku, group in itertools.groupby(basket.products, key=lambda x: x.get_product()[0].get('sku')):
@@ -113,10 +140,13 @@ def checkout(skus):
         if product.is_on_offer():
             offer = Offer(product.get_product()[0].get('offer_id'))
             offer_price = offer.get_offer()[0].get('price')
-            offer_quantity = offer.get_offer()[0].get('quantity')
+            if offer_price:
+                offer_quantity = offer.get_offer()[0].get('quantity')
 
-            quo, rem = divmod(group[1], offer_quantity)
-            total += quo * offer_price + rem * product_price
+                quo, rem = divmod(group[1], offer_quantity)
+                total += quo * offer_price + rem * product_price
+            else:
+                total += group[1] * product_price
         else:
             total += group[1] * product_price
 

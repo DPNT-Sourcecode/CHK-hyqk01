@@ -28,6 +28,11 @@ class TestProduct(unittest.TestCase):
                 "price": 15,
                 "offer_id": None
             },
+            {
+                "sku": "E",
+                "price": 40,
+                "offer_id": 3
+            },
         ]
 
     def test_product_is_available(self):
@@ -66,12 +71,19 @@ class TestOffer(unittest.TestCase):
             {
                 "offer_id": 1,
                 "quantity": 3,
-                "price": 130
+                "price": 130,
             },
             {
                 "offer_id": 2,
                 "quantity": 2,
                 "price": 45
+            },
+            {
+                "offer_id": 3,
+                "quantity": 2,
+                "price": None,
+                "sku": "B",
+                "sku_quantity": 1
             },
         ]
 
@@ -80,7 +92,7 @@ class TestOffer(unittest.TestCase):
         self.assertTrue(offer.is_available())
 
     def test_offer_is_not_available(self):
-        offer = Offer(3)
+        offer = Offer(100)
         self.assertFalse(offer.is_available())
 
     def test_get_available_offer(self):
@@ -88,7 +100,7 @@ class TestOffer(unittest.TestCase):
         self.assertEqual(1, len(offer.get_offer()))
 
     def test_get_not_available_offer(self):
-        offer = Offer(3)
+        offer = Offer(100)
         self.assertEqual(0, len(offer.get_offer()))
 
 
@@ -115,11 +127,15 @@ class TestCheckout(unittest.TestCase):
         self.valid_basket_1 = u'CAAABB'
         self.valid_basket_2 = u'BABC'
         self.valid_basket_3 = u''
+        self.valid_basket_4 = u'EEB'
+        self.valid_basket_5 = u'EEBB'
 
     def test_checkout(self):
         self.assertEqual(195, checkout(self.valid_basket_1))
         self.assertEqual(115, checkout(self.valid_basket_2))
         self.assertEqual(0, checkout(self.valid_basket_3))
+        self.assertEqual(80, checkout(self.valid_basket_4))
+        self.assertEqual(110, checkout(self.valid_basket_5))
 
 
 if __name__ == '__main__':
